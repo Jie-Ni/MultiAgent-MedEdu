@@ -1,8 +1,5 @@
 # MultiAgent-MedEdu-Simulation
 
-Code accompanying **"Can Multi-Agent LLMs Faithfully Simulate Medical Students'
-Clinical Reasoning? A Methodological Evaluation of Knowledge-Constrained
-Generation"** (Ni & Jatowt, *Computers in Human Behavior*, under review).
 
 ## Overview
 
@@ -73,18 +70,6 @@ sbatch --dependency=afterok:$PREV_JOBID slurm/analyze.sbatch
 Dialogue corpus (1,350 JSON files, ~450 MB) and computed metrics are released
 via a separate data archive linked from the paper.
 
-## Citation
-
-```
-@article{ni2026multiagent,
-  title   = {Can Multi-Agent LLMs Faithfully Simulate Medical Students'
-             Clinical Reasoning? A Methodological Evaluation of
-             Knowledge-Constrained Generation},
-  author  = {Ni, Jie and Jatowt, Adam},
-  journal = {Computers in Human Behavior},
-  year    = {2026}
-}
-```
 
 ## License
 
