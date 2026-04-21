@@ -1,4 +1,4 @@
-# MultiAgent-MedEdu-Simulation
+# MultiAgent-MedEdu
 
 
 ## Overview
