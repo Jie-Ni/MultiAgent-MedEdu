@@ -1,0 +1,88 @@
+# CHB Multi-Agent Medical Education System Configuration
+
+experiment:
+  name: "CHB_MultiAgent_MedEdu_Fidelity"
+  n_cases: 30
+  n_seeds: 5
+  output_dir: "./results"
+
+# Student competence levels with knowledge boundaries
+student_levels:
+  novice_y1:
+    label: "Novice (Year 1)"
+    known_domains: ["anatomy", "physiology", "biochemistry"]
+    unknown_domains: ["pathology", "pharmacology", "clinical_medicine", "surgery"]
+    max_reasoning_hops: 1
+    confusion_tuples:
+      - ["angina", "myocardial_infarction"]
+      - ["type1_diabetes", "type2_diabetes"]
+      - ["viral_infection", "bacterial_infection"]
+    vocabulary_level: "basic"
+
+  intermediate_y3:
+    label: "Intermediate (Year 3)"
+    known_domains: ["anatomy", "physiology", "biochemistry", "pathology", "pharmacology_basics"]
+    unknown_domains: ["clinical_medicine", "surgery", "advanced_pharmacology"]
+    max_reasoning_hops: 2
+    confusion_tuples:
+      - ["stable_angina", "unstable_angina"]
+      - ["gram_positive", "gram_negative_treatment"]
+    vocabulary_level: "intermediate"
+
+  advanced_y4:
+    label: "Advanced (Year 4)"
+    known_domains: ["anatomy", "physiology", "biochemistry", "pathology", "pharmacology", "clinical_medicine_basics"]
+    unknown_domains: ["advanced_surgery", "rare_conditions", "complex_drug_interactions"]
+    max_reasoning_hops: 3
+    confusion_tuples:
+      - ["nephrotic_vs_nephritic"]
+    vocabulary_level: "advanced"
+
+  expert_y5:
+    label: "Expert (Year 5)"
+    known_domains: ["all"]
+    unknown_domains: []
+    max_reasoning_hops: 5
+    confusion_tuples: []
+    vocabulary_level: "expert"
+
+# Interaction conditions
+conditions:
+  multi_agent:
+    label: "Multi-Agent"
+    agents: ["tutor", "patient", "assessment", "simulated_student"]
+    description: "Full multi-agent architecture with specialized roles"
+
+  single_agent:
+    label: "Single-Agent"
+    agents: ["unified"]
+    description: "One LLM plays all roles in a single prompt"
+
+  direct_qa:
+    label: "Direct QA"
+    agents: ["qa"]
+    description: "Student asks, LLM answers directly, no pedagogical scaffolding"
+
+# LLM settings
+llm:
+  model: "meta-llama/Meta-Llama-3-8B-Instruct"
+  fallback_models:
+    - "Qwen/Qwen3-72B-Instruct"
+    - "deepseek-ai/DeepSeek-V3.2"
+  temperature: 0.7  # Some randomness for diverse simulations
+  max_tokens: 512
+  max_dialogue_turns: 20
+
+# Case distribution
+cases:
+  internal_medicine: 10
+  surgery: 5
+  emergency: 5
+  pediatrics: 5
+  obgyn: 5
+
+# Evaluation
+evaluation:
+  blooms_levels: ["remember", "understand", "apply", "analyze", "evaluate", "create"]
+  coi_phases: ["triggering", "exploration", "integration", "resolution"]
+  fidelity_dimensions: ["linguistic", "behavioral", "cognitive", "educational"]
